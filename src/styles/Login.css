@@ -1,0 +1,209 @@
+/* Estilo Messenger para Login Component */
+
+.contenedor-login {
+  background-color: #F0F2F5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.titulo {
+  font-size: 24px;
+  color: #1C1E21;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.contenedor-login > p {
+  font-size: 16px;
+  color: #65676B;
+  margin: 0 0 24px 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+.contenedor-form {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 16px;
+}
+
+/* Mover el título y párrafo dentro del contenedor-form */
+.contenedor-form::before {
+  content: '';
+  display: block;
+  margin-bottom: 24px;
+}
+
+/* Alternativa: Si quieres que el título esté realmente dentro del cuadro */
+.contenedor-login .titulo,
+.contenedor-login > p {
+  background-color: #FFFFFF;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  padding: 24px 40px 0 40px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0;
+}
+
+.contenedor-login > p {
+  border-radius: 0;
+  padding: 0 40px 24px 40px;
+  box-shadow: none;
+  border-top: none;
+}
+
+.contenedor-form {
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  padding: 0 40px 40px 40px;
+  margin-top: 0;
+}
+
+.contenedor-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contenedor-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-form input[type="email"],
+.contenedor-form input[type="password"] {
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid #CED0D4;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+  color: #1C1E21;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contenedor-form input[type="email"]:focus,
+.contenedor-form input[type="password"]:focus {
+  border-color: #0084FF;
+  box-shadow: 0 0 0 2px rgba(0, 132, 255, 0.1);
+}
+
+.contenedor-form input[type="email"]::placeholder,
+.contenedor-form input[type="password"]::placeholder {
+  color: #65676B;
+}
+
+.contenedor-form input[type="submit"] {
+  background-color: #0084FF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin-top: 8px;
+}
+
+.contenedor-form input[type="submit"]:hover {
+  background-color: #006FE0;
+}
+
+.contenedor-form input[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+/* Estados de carga, error y éxito */
+.contenedor-cargando,
+.contenedor-error,
+.contenedor-exitoso {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  padding: 16px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.contenedor-cargando {
+  background-color: #F0F2F5;
+  border: 1px solid #CED0D4;
+}
+
+.contenedor-error {
+  background-color: #FFE6E6;
+  border: 1px solid #FA3E3E;
+}
+
+.contenedor-exitoso {
+  background-color: #E8F5E8;
+  border: 1px solid #42B72A;
+}
+
+.titulo-cargnado {
+  font-size: 14px;
+  color: #65676B;
+  margin: 0;
+  font-weight: 400;
+}
+
+.contenedor-error .titulo-cargnado {
+  color: #FA3E3E;
+}
+
+.contenedor-exitoso p {
+  font-size: 14px;
+  color: #42B72A;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Animación de carga */
+.contenedor-cargando::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #CED0D4;
+  border-top: 2px solid #0084FF;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .contenedor-login {
+    padding: 16px;
+  }
+  
+  .contenedor-form {
+    padding: 24px;
+  }
+  
+  .titulo {
+    font-size: 20px;
+  }
+}

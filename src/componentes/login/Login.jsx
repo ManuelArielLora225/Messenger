@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFetchApi } from '../../api/apiFetch'
+import { Link } from "react-router-dom";
 import '../../styles/Login.css'
 
 const Login = () => {
@@ -59,6 +60,10 @@ const Login = () => {
                     <input type="submit" value="Iniciar Sesion"/>
   
                 </form>
+
+                <Link to='/Register' className="boton-registrarse">
+                    <h3>Registrarme</h3>
+                </Link>
 
             </div>
 

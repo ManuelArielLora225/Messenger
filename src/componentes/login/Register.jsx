@@ -1,5 +1,8 @@
 import { useState }  from 'react'
 import { useFetchApi } from '../../api/apiFetch'
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import '../../styles/Register.css'
 
 
 const Register = () => {
@@ -7,6 +10,7 @@ const Register = () => {
     const token = null
     const [response, setResponse] = useState({})
     const { data, error, loading, request } = useFetchApi('https://api-messenger-g42w.onrender.com/api/users/register', token)
+    const navegate = useNavigate()
 
     const createResponse = (e) => {
         setResponse({
@@ -29,8 +33,13 @@ const Register = () => {
             method: "POST",
             body: response
         })
+
+        if(data){
+            navegate('/Login')
+        }
         
         console.log('Respuesta del servidor:', respond)
+
     }
     
 
@@ -40,7 +49,7 @@ const Register = () => {
 
         {!loading && !error &&
  
-       <>
+       <div className='sub-contenedor-register'>
             <h1 className='titulo'>Registrar</h1>
 
              <form onSubmit={createAccount}>
@@ -95,7 +104,11 @@ const Register = () => {
                 <input type='submit' value='Registrarse'/>
 
              </form>
-         </>
+
+                <Link to='/Login' className="boton-registrarse">
+                    <h3>Inicar Sesion</h3>
+                </Link>
+         </div>
             
         }
 

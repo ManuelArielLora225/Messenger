@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
- export function useFetchApi(url, token){
+ export function useFetchApi(defaultUrl, token){
 
     const [data, setData]  = useState(null)
     const [error, setError] = useState(null)
@@ -8,7 +8,8 @@ import { useEffect, useRef, useState } from "react";
 
     const abortController = useRef(null)
 
-    const request =  async ({method = "GET", body = null}) => {
+    const request =  async ({url, method = "GET", body = null}) => {
+        const finalUrl = url || defaultUrl
 
         if(abortController.current){
             abortController.current.abort();
@@ -22,7 +23,7 @@ import { useEffect, useRef, useState } from "react";
 
         try {
             
-          const res = await fetch(url, {
+          const res = await fetch( finalUrl,{
             method,
             headers: {
                 "Content-Type": "application/json",

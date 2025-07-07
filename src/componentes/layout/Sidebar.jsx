@@ -7,7 +7,7 @@ import { CgProfile } from "react-icons/cg";
 const Sidebar = () => {
 
      const token = localStorage.getItem("token");
-     const { data, loading, error, request } = useFetchApi("", token)
+     const { request } = useFetchApi("", token)
 
 
     const [usersOnline, setUsersOnline] = useState([])
@@ -58,7 +58,7 @@ const Sidebar = () => {
         <div className="contenedor-sidebar">
 
             <div className="contenedor-icon-profile">
-                <NavLink to='/Profile'><CgProfile className='icono-perfil'/></NavLink>
+                <NavLink to='/Profile' className='icono-perfil'><CgProfile/></NavLink>
                 <p className="titulo-perfil">Perfil</p>
             </div>
 
@@ -69,7 +69,7 @@ const Sidebar = () => {
 
                 {showUsersOnline &&
                     <div className="contenedor-users">
-                        {data.map(user => (
+                        {usersOnline.map(user => (
                             <div key={user.id} className="contenedor-user-online">
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
@@ -78,6 +78,38 @@ const Sidebar = () => {
                         ))}
                     </div>
                 }
+
+                <h3 className="cabecera-amigos-online"
+                onClick={friendsOnlineList}>Friends</h3>
+
+                {showFriends &&
+                    <div className="contenedor-users">
+                        {friends.map(user => (
+                            <div key={user.id} className="contenedor-user-online">
+                            <p className="name">{user.name + ' ' + user.lastname}</p>
+                            <p className="status">{user.status}</p>
+                            <p className="country">{usersOnline.country}</p>
+                            </div>
+                        ))}
+                    </div>
+                }
+
+                <h3 className="cabecera-amigos-online"
+                onClick={pendingFriendsList}>Friends Pending</h3>
+
+                {ShowPending &&
+                    <div className="contenedor-users">
+                        {Pending.map(user => (
+                            <div key={user.id} className="contenedor-user-online">
+                            <p className="name">{user.name + ' ' + user.lastname}</p>
+                            <p className="status">{user.status}</p>
+                            <p className="country">{usersOnline.country}</p>
+                            </div>
+                        ))}
+                    </div>
+                }
+
+
 
             </div>
 

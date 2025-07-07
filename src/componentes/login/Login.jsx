@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useFetchApi } from '../../api/apiFetch'
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
+
 import '../../styles/Login.css'
 
 const Login = () => {
 
     const [account, setAccount] = useState(null)
     const { data, error, loading, request } = useFetchApi('https://api-messenger-g42w.onrender.com/api/users/login', null)
+    const navigate = useNavigate();
 
     const createLogin = (e) => {
         setAccount({
@@ -33,6 +35,7 @@ const Login = () => {
 
        setAccount(null)
 
+       navigate('/Layout')
     }
 
     return (

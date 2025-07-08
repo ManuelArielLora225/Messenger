@@ -38,7 +38,6 @@ const Register = () => {
             navegate('/Login')
         }
         
-        console.log('Respuesta del servidor:', respond)
 
     }
     

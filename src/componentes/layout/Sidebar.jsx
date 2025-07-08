@@ -1,13 +1,16 @@
-import { useState } from "react"
+import { useId, useState } from "react"
 import { useFetchApi } from "../../api/apiFetch"
 import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { useIdContext } from "../../providers/usersIdProviders";
+import '../../styles/Sidebar.css'
 
 
 const Sidebar = () => {
 
      const token = localStorage.getItem("token");
      const { request } = useFetchApi("", token)
+     const { setId } = useIdContext();
 
 
     const [usersOnline, setUsersOnline] = useState([])
@@ -65,12 +68,12 @@ const Sidebar = () => {
             <div className="contenedor-opciones">
 
                 <h3 className="cabecera-usuarios-online"
-                onClick={usersOnlineList}>Users Online</h3>
+                onClick={usersOnlineList}>Usuarios Online</h3>
 
                 {showUsersOnline &&
                     <div className="contenedor-users">
                         {usersOnline.map(user => (
-                            <div key={user.id} className="contenedor-user-online">
+                            <div key={user.id} className="contenedor-user-online" onClick={() => setId(user.id)}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
                             <p className="country">{usersOnline.country}</p>
@@ -80,12 +83,12 @@ const Sidebar = () => {
                 }
 
                 <h3 className="cabecera-amigos-online"
-                onClick={friendsOnlineList}>Friends</h3>
+                onClick={friendsOnlineList}>Amigos</h3>
 
                 {showFriends &&
                     <div className="contenedor-users">
                         {friends.map(user => (
-                            <div key={user.id} className="contenedor-user-online">
+                            <div key={user.id} className="contenedor-user-online" onClick={() => setId(user.id)}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
                             <p className="country">{usersOnline.country}</p>
@@ -95,12 +98,12 @@ const Sidebar = () => {
                 }
 
                 <h3 className="cabecera-amigos-online"
-                onClick={pendingFriendsList}>Friends Pending</h3>
+                onClick={pendingFriendsList}>Pendientes</h3>
 
                 {ShowPending &&
                     <div className="contenedor-users">
                         {Pending.map(user => (
-                            <div key={user.id} className="contenedor-user-online">
+                            <div key={user.id} className="contenedor-user-online" onClick={() => setId(user.id)}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
                             <p className="country">{usersOnline.country}</p>

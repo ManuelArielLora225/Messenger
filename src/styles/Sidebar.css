@@ -1,0 +1,353 @@
+/* Sidebar Principal */
+.contenedor-sidebar {
+    width: 300px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+}
+
+.contenedor-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.contenedor-sidebar::-webkit-scrollbar-track {
+    background: #F0F2F5;
+}
+
+.contenedor-sidebar::-webkit-scrollbar-thumb {
+    background: #CED0D4;
+    border-radius: 3px;
+}
+
+.contenedor-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #0084FF;
+}
+
+/* Sección de Perfil */
+.contenedor-icon-profile {
+    padding: 24px 20px;
+    border-bottom: 1px solid #CED0D4;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.contenedor-icon-profile:hover {
+    background-color: #F0F2F5;
+}
+
+.icono-perfil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #0084FF 0%, #006FE0 100%);
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.icono-perfil:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+}
+
+.titulo-perfil {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1C1E21;
+    margin: 0;
+    font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Contenedor de Opciones */
+.contenedor-opciones {
+    padding: 16px 0;
+    flex: 1;
+}
+
+/* Cabeceras de Secciones */
+.cabecera-usuarios-online, 
+.cabecera-amigos-online {
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0084FF;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.cabecera-usuarios-online::after,
+.cabecera-amigos-online::after {
+    content: '▼';
+    font-size: 10px;
+    color: #65676B;
+    transition: transform 0.3s ease;
+}
+
+.cabecera-usuarios-online:hover,
+.cabecera-amigos-online:hover {
+    background-color: #D0E6FF;
+    color: #006FE0;
+}
+
+/* Contenedor de Usuarios */
+.contenedor-users {
+    background-color: #FFFFFF;
+    animation: slideDown 0.3s ease-out;
+}
+
+.contenedor-users::-webkit-scrollbar {
+    width: 4px;
+}
+
+.contenedor-users::-webkit-scrollbar-track {
+    background: #F0F2F5;
+}
+
+.contenedor-users::-webkit-scrollbar-thumb {
+    background: #CED0D4;
+    border-radius: 2px;
+}
+
+/* Elementos de Usuario Individual */
+.contenedor-user-online {
+    padding: 12px 20px;
+    margin: 0 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.contenedor-user-online:hover {
+    background-color: #F0F2F5;
+    border-left-color: #0084FF;
+    transform: translateX(4px);
+}
+
+.contenedor-user-online:active {
+    background-color: #D0E6FF;
+}
+
+/* Contenido de Usuario */
+.contenedor-user-online .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1C1E21;
+    margin: 0 0 4px 0;
+    font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.contenedor-user-online .status {
+    font-size: 12px;
+    color: #65676B;
+    margin: 0 0 2px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.contenedor-user-online .status::before {
+    content: '●';
+    font-size: 8px;
+    color: #42B72A;
+}
+
+/* Estados offline */
+.contenedor-user-online .status[data-status="offline"]::before,
+.contenedor-user-online .status:contains("offline")::before {
+    color: #CED0D4;
+}
+
+.contenedor-user-online .country {
+    font-size: 11px;
+    color: #65676B;
+    font-style: italic;
+    margin: 0;
+    font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Animaciones */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contenedor-sidebar {
+        width: 280px;
+    }
+    
+    .contenedor-icon-profile {
+        padding: 20px 16px;
+    }
+    
+    .cabecera-usuarios-online, 
+    .cabecera-amigos-online {
+        padding: 10px 16px;
+        margin: 0 4px;
+        font-size: 13px;
+    }
+    
+    .contenedor-user-online {
+        padding: 10px 16px;
+        margin: 0 4px;
+    }
+    
+    .contenedor-user-online .name {
+        font-size: 13px;
+    }
+    
+    .contenedor-user-online .status {
+        font-size: 11px;
+    }
+    
+    .contenedor-user-online .country {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-sidebar {
+        width: 100%;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+    }
+    
+    .contenedor-icon-profile {
+        padding: 16px 12px;
+    }
+    
+    .titulo-perfil {
+        font-size: 15px;
+    }
+    
+    .cabecera-usuarios-online, 
+    .cabecera-amigos-online {
+        padding: 8px 12px;
+        margin: 0 2px;
+        font-size: 12px;
+    }
+    
+    .contenedor-user-online {
+        padding: 8px 12px;
+        margin: 0 2px;
+    }
+    
+    .contenedor-user-online .name {
+        font-size: 12px;
+    }
+    
+    .contenedor-user-online .status {
+        font-size: 10px;
+    }
+    
+    .contenedor-user-online .country {
+        font-size: 9px;
+    }
+}
+
+/* Estados especiales */
+.contenedor-user-online:first-child {
+    animation-delay: 0.1s;
+}
+
+.contenedor-user-online:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.contenedor-user-online:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.contenedor-user-online:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.contenedor-user-online:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+/* Efecto de focus para accesibilidad */
+.contenedor-user-online:focus,
+.cabecera-usuarios-online:focus,
+.cabecera-amigos-online:focus,
+.icono-perfil:focus {
+    outline: 2px solid #0084FF;
+    outline-offset: 2px;
+}
+
+/* Mejoras visuales adicionales */
+.contenedor-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 132, 255, 0.02) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* Separador visual entre secciones */
+.cabecera-usuarios-online:not(:first-child),
+.cabecera-amigos-online:not(:first-child) {
+    margin-top: 8px;
+}
+
+.cabecera-usuarios-online:not(:first-child)::before,
+.cabecera-amigos-online:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 8px;
+    right: 8px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #CED0D4 50%, transparent);
+}

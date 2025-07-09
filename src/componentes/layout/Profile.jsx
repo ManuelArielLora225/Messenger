@@ -14,13 +14,38 @@ const Profile = () => {
     const [loading, setLoading] = useState(true)
 
     const { request  } = useFetchApi("", token)
-    const {solicitud, setSolicitud} = useState('Añadir')
+    const [solicitud, setSolicitud] = useState('Añadir')
+    const [statusFriends, setStatusFriends] = useState(null)
+    const [requester, setRequester] = useState(null)
 
+
+   //request of friend status
+    const statusFriend = async () => {
+
+        try{
+   
+           const res = await request({
+            url:`https://api-messenger-g42w.onrender.com/api/friends/statusFriend/${id}`
+           })
+
+           if(res && res.status){
+             setStatusFriends(res.status)
+             setRequester(res.requester_id)
+           }
+
+
+        } catch(err) {
+            console.error('Error de solicitud de estado de amigos', err);
+        }
+    }
+
+
+    //request of userInfo
      useEffect(() => {
   
         axios.get(`https://api-messenger-g42w.onrender.com/api/users/profile/${id}`)
          .then(res => {
-            setData(res)
+            setData(res.data)
          })
          .catch(err => {
             setError(err.message)
@@ -29,7 +54,13 @@ const Profile = () => {
             setLoading(false)
          })
 
+         statusFriend()
+
      },[id])
+
+
+
+     //friend-buttom-functions
 
      const addFriend = async (e) => {
         e.preventDefault();
@@ -47,6 +78,7 @@ const Profile = () => {
         if(res && res.message){
             alert(res.message)
             setSolicitud('Pendiente')
+            await statusFriend()
         } else {
             alert('Algo a salido mal')
         } 
@@ -56,10 +88,79 @@ const Profile = () => {
             alert("No se pudo enviar la solicitud")
         }
         
-
-        
      }
      
+     const acceptFriend = async (e) => {
+        e.preventDefault();
+
+        try {
+
+            const res = await request({
+                url:`https://api-messenger-g42w.onrender.com/api/friends/requestFriend/${id}`,
+                method: "POST",
+                body: {
+                    field: "status",
+                    value: "Accepted"
+                }
+            })
+
+            if(res && res.message){
+                alert(res.message)
+                await statusFriend()
+            }
+
+        } catch(err){
+            console.error('Error al aceptar amigo', err)
+            alert('No se pudo aceptar la solicitud')
+        }
+
+     }
+
+        const rejectedFriend = async (e) => {
+        e.preventDefault();
+
+        try {
+
+            const res = await request({
+                url:`https://api-messenger-g42w.onrender.com/api/friends/requestFriend/${id}`,
+                method: "POST",
+                body: {
+                    field: "status",
+                    value: "rejected"
+                }
+            })
+            
+            if(res && res.message){
+                alert(res.message)
+                await statusFriend()
+            }
+        } catch(err){
+            console.error('Error al aceptar amigo', err)
+            alert('No se pudo aceptar la solicitud')
+        }
+
+     }
+
+
+    const deleteFriend = async (e) => {
+        e.preventDefault();
+
+        try {
+            
+            const res = await request({
+                url: `https://api-messenger-g42w.onrender.com/api/friends/deleteFriend/${id}`,
+                method: "DELETE"
+            })
+
+            if(res && res.message){
+                alert(res.message)
+                await statusFriend()
+            }
+        } catch(err){
+            console.error('Error al eliminar amigo', err)
+            alert('No se pudo eliminar al amigo')
+        }
+
 
 
 
@@ -98,7 +199,7 @@ const Profile = () => {
                 </button>
 
                 <button className='boton-chat'>
-                    Chat
+                    💬 Chat
                 </button>
 
             </div>
@@ -111,7 +212,7 @@ const Profile = () => {
      )
 
 
-}
+}}
 
 
 export default Profile

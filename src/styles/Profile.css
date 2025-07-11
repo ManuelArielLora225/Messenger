@@ -1,0 +1,357 @@
+/* Profile.css - Estilo tipo Messenger */
+
+/* Variables CSS para colores consistentes */
+:root {
+  --bg-general: #F0F2F5;
+  --bg-contenedor: #FFFFFF;
+  --azul-principal: #0084FF;
+  --azul-claro: #D0E6FF;
+  --azul-hover: #006FE0;
+  --texto-principal: #1C1E21;
+  --texto-secundario: #65676B;
+  --borde-gris: #CED0D4;
+  --verde-activo: #42B72A;
+  --rojo-error: #FA3E3E;
+  --amarillo-pendiente: #FFA500;
+}
+
+/* Contenedor general del perfil */
+.contenedor-general {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: var(--bg-general);
+  padding: 24px;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Estados de carga y error */
+.contenedor-cargando,
+.contenedor-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-contenedor);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.contenedor-cargando h2 {
+  color: var(--azul-principal);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contenedor-error h2 {
+  color: var(--rojo-error);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Contenedor principal del perfil */
+.contenedor-de-perfil {
+  background-color: var(--bg-contenedor);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Sección de información básica */
+.contenedor-inicio-perfil {
+  text-align: center;
+  padding: 24px;
+  border-bottom: 1px solid var(--borde-gris);
+}
+
+.contenedor-inicio-perfil h1 {
+  color: var(--texto-principal);
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.contenedor-inicio-perfil h3 {
+  color: var(--azul-principal);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+}
+
+.contenedor-inicio-perfil p {
+  color: var(--texto-secundario);
+  font-size: 16px;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+/* Sección de detalles del perfil */
+.contenedor-detalles-perfil {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px;
+  background-color: #FAFBFC;
+  border-radius: 8px;
+  border: 1px solid var(--borde-gris);
+}
+
+.contenedor-detalles-perfil p {
+  color: var(--texto-principal);
+  font-size: 16px;
+  margin: 0;
+  padding: 12px 0;
+  border-bottom: 1px solid #EBEDF0;
+}
+
+.contenedor-detalles-perfil p:last-child {
+  border-bottom: none;
+}
+
+/* Responsive para detalles en móviles */
+@media (max-width: 768px) {
+  .contenedor-detalles-perfil {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .contenedor-de-perfil {
+    max-width: 100%;
+    padding: 24px;
+  }
+  
+  .contenedor-inicio-perfil h1 {
+    font-size: 28px;
+  }
+  
+  .contenedor-inicio-perfil h3 {
+    font-size: 16px;
+  }
+  
+  .contenedor-detalles-perfil p {
+    font-size: 15px;
+  }
+}
+
+/* Contenedor de botones */
+.contenedor-botones {
+  display: flex;
+  gap: 24px;
+  padding: 24px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contenedor-boton-amistad {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Estilos base para botones */
+.contenedor-botones button {
+  width: 100%;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Botón agregar amigo */
+.agregar_amigo {
+  background-color: var(--azul-principal);
+  color: white;
+}
+
+.agregar_amigo:hover {
+  background-color: var(--azul-hover);
+  transform: translateY(-1px);
+}
+
+/* Botón solicitud enviada */
+.boton-Enviado {
+  background-color: var(--amarillo-pendiente);
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Botón aceptar solicitud */
+.boton_Aceptar_Solicitud {
+  background-color: var(--verde-activo);
+  color: white;
+  margin-bottom: 8px;
+}
+
+.boton_Aceptar_Solicitud:hover {
+  background-color: #369A1F;
+  transform: translateY(-1px);
+}
+
+/* Botón rechazar solicitud */
+.boton_Rechazar_Solicitud {
+  background-color: var(--rojo-error);
+  color: white;
+}
+
+.boton_Rechazar_Solicitud:hover {
+  background-color: #E53935;
+  transform: translateY(-1px);
+}
+
+/* Botón eliminar amigo */
+.boton_Eliminar_Amigo {
+  background-color: var(--rojo-error);
+  color: white;
+}
+
+.boton_Eliminar_Amigo:hover {
+  background-color: #E53935;
+  transform: translateY(-1px);
+}
+
+/* Botón rechazado */
+.boton_rechazado {
+  background-color: var(--texto-secundario);
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Botón de chat */
+.boton-chat {
+  background-color: var(--bg-contenedor);
+  color: var(--azul-principal);
+  border: 2px solid var(--azul-principal);
+  min-width: 160px;
+}
+
+.boton-chat:hover {
+  background-color: var(--azul-claro);
+  transform: translateY(-1px);
+}
+
+/* Animaciones y efectos */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contenedor-de-perfil {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .contenedor-general {
+    padding: 16px;
+  }
+  
+  .contenedor-de-perfil {
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .contenedor-botones {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .contenedor-boton-amistad {
+    min-width: unset;
+  }
+  
+  .contenedor-inicio-perfil h1 {
+    font-size: 20px;
+  }
+  
+  .contenedor-inicio-perfil h3 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor-general {
+    padding: 12px;
+  }
+  
+  .contenedor-de-perfil {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .contenedor-botones button {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Estados hover para mejor UX */
+.contenedor-detalles-perfil:hover {
+  background-color: #F5F6F7;
+  transition: background-color 0.2s ease;
+}
+
+/* Indicadores de estado */
+.contenedor-inicio-perfil::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--verde-activo);
+  border-radius: 50%;
+  border: 2px solid var(--bg-contenedor);
+}
+
+/* Mejoras para accesibilidad */
+.contenedor-botones button:focus {
+  outline: 2px solid var(--azul-principal);
+  outline-offset: 2px;
+}
+
+.contenedor-botones button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Efectos de loading */
+.contenedor-cargando::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--azul-claro);
+  border-top: 2px solid var(--azul-principal);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 12px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

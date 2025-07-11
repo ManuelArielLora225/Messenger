@@ -1,6 +1,6 @@
-import { useId, useState } from "react"
+import { useState } from "react"
 import { useFetchApi } from "../../api/apiFetch"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { useIdContext } from "../../providers/usersIdProviders";
 import '../../styles/Sidebar.css'
@@ -11,6 +11,7 @@ const Sidebar = () => {
      const token = localStorage.getItem("token");
      const { request } = useFetchApi("", token)
      const { setId } = useIdContext();
+     const navegate = useNavigate();
 
 
     const [usersOnline, setUsersOnline] = useState([])
@@ -61,7 +62,7 @@ const Sidebar = () => {
         <div className="contenedor-sidebar">
 
             <div className="contenedor-icon-profile">
-                <NavLink to='/Profile' className='icono-perfil'><CgProfile/></NavLink>
+                <NavLink to="UserProfile" className='icono-perfil'><CgProfile/></NavLink>
                 <p className="titulo-perfil">Perfil</p>
             </div>
 
@@ -73,7 +74,7 @@ const Sidebar = () => {
                 {showUsersOnline &&
                     <div className="contenedor-users">
                         {usersOnline.map(user => (
-                            <div key={user.id} className="contenedor-user-online" onClick={() => setId(user.id)}>
+                            <div key={user.id} className="contenedor-user-online" onClick={() => {navegate(`/Layout/Profile/${user.id}`)}}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
                             <p className="country">{usersOnline.country}</p>
@@ -88,7 +89,7 @@ const Sidebar = () => {
                 {showFriends &&
                     <div className="contenedor-users">
                         {friends.map(user => (
-                            <div key={user.id} className="contenedor-user-online" onClick={() => setId(user.id)}>
+                            <div key={user.id} className="contenedor-user-online" onClick={() => {navegate(`/Layout/Profile/${user.id}`)}}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
                             <p className="country">{usersOnline.country}</p>
@@ -101,9 +102,9 @@ const Sidebar = () => {
                 onClick={pendingFriendsList}>Pendientes</h3>
 
                 {ShowPending &&
-                    <div className="contenedor-users">
+                     <div className="contenedor-users">
                         {Pending.map(user => (
-                            <div key={user.id} className="contenedor-user-online" onClick={() => setId(user.id)}>
+                            <div key={user.id} className="contenedor-user-online" onClick={() => {navegate(`/Layout/Profile/${user.id}`)}}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
                             <p className="country">{usersOnline.country}</p>

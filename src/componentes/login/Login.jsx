@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFetchApi } from '../../api/apiFetch'
 import { Link, useNavigate} from "react-router-dom";
-
+import { jwtDecode } from "jwt-decode";
 import '../../styles/Login.css'
 
 const Login = () => {
@@ -28,6 +28,9 @@ const Login = () => {
        if(res && res.token){
 
          localStorage.setItem("token", res.token);
+         
+         const decoded = jwtDecode(res.token);
+         localStorage.setItem("userId", decoded.id)
 
        } else {
         alert('No se a guardado la verificacion se inicio de sesion')

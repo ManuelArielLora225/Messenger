@@ -16,10 +16,12 @@ function App() {
 
      <Route path="/Login" element={<Login />} />
      <Route path="/Register" element={<Register/>} />
-     <Route path="/Layout" element={<Layout />} />
-     <Route path="/Profile" element={<Profile />} />
-     <Route path="/userProfile" element={<UserProfile />} />
-     <Route path="/Chat" element={<Chat />} />
+
+     <Route path="/Layout" element={<Layout />}>
+       <Route path="Profile/:id" element={<Profile />} />
+      <Route path="UserProfile" element={<UserProfile />} />
+      <Route path="Chat" element={<Chat />} />
+     </Route>
 
     </Routes>
     

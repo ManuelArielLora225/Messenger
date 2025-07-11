@@ -1,22 +1,25 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIdContext } from "../../providers/usersIdProviders";
 import { useFetchApi } from '../../api/apiFetch';
+import { useParams } from 'react-router-dom';
 import axios from 'axios'
+import '../../styles/Profile.css'
 
 const Profile = () => {
 
-    const { id } = useIdContext();
+    const { id } = useParams();
     const token = localStorage.getItem("token")
-     
+    const userId = localStorage.getItem("userId")
 
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
 
     const { request  } = useFetchApi("", token)
-    const [solicitud, setSolicitud] = useState('Añadir')
     const [statusFriends, setStatusFriends] = useState(null)
     const [requester, setRequester] = useState(null)
+
+    console.log(id)
 
 
    //request of friend status
@@ -42,6 +45,8 @@ const Profile = () => {
 
     //request of userInfo
      useEffect(() => {
+
+         statusFriend()
   
         axios.get(`https://api-messenger-g42w.onrender.com/api/users/profile/${id}`)
          .then(res => {
@@ -54,7 +59,7 @@ const Profile = () => {
             setLoading(false)
          })
 
-         statusFriend()
+        
 
      },[id])
 
@@ -77,7 +82,6 @@ const Profile = () => {
  
         if(res && res.message){
             alert(res.message)
-            setSolicitud('Pendiente')
             await statusFriend()
         } else {
             alert('Algo a salido mal')
@@ -159,10 +163,36 @@ const Profile = () => {
         } catch(err){
             console.error('Error al eliminar amigo', err)
             alert('No se pudo eliminar al amigo')
-        }
+        } }
 
+         const friendButtom = () => {
 
+            if(!statusFriends) return <button className='agregar_amigo' onClick={addFriend}>Añadir amigo</button>
 
+           if(statusFriends === 'Pending'){
+            if(requester == userId){
+                return <button className='boton-Enviado' disabled>Solicitud Enviada</button>
+            } else {
+                return (
+                    <>
+                <button className='boton_Aceptar_Solicitud' onClick={acceptFriend}>Aceptar Solicitud</button>
+                <button className='boton_Rechazar_Solicitud' onClick={rejectedFriend}>Rechazar Solicitud</button>
+                   </>
+                )
+            }
+
+           }
+
+           if(statusFriends === 'Accepted'){
+            return <button className='boton_Eliminar_Amigo' onClick={deleteFriend}>Eliminar Amigo</button>
+           }
+
+           if(statusFriends === 'rejected'){
+            return <button className='boton_rechazado' disabled>Solicitud Rechazada</button>
+           }
+                 }
+           
+  
 
      return (
         <div className='contenedor-general'>
@@ -193,10 +223,10 @@ const Profile = () => {
 
             <div className='contenedor-botones'>
 
-                <button className='boton-amigo'
-                onClick={addFriend}>
-                   {solicitud}
-                </button>
+                <div className='contenedor-boton-amistad'>
+                    {friendButtom()}
+                </div>
+
 
                 <button className='boton-chat'>
                     💬 Chat
@@ -212,7 +242,7 @@ const Profile = () => {
      )
 
 
-}}
+}
 
 
 export default Profile

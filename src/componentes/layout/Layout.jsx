@@ -1,10 +1,21 @@
-import Sidebar from "./Sidebar"
+import { Outlet } from "react-router-dom"
+import Sidebar from "./Sidebar";
+import '../../styles/Layout.css'
+
 
 const Layout = () => {
 
 return (
 
-    <Sidebar />
+    <div className="layout-container">
+       <Sidebar />
+    <div className="content-contaider">
+        <Outlet />
+    </div>
+ </div>
+
+
+  
 )
     
 }

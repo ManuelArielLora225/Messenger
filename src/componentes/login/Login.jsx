@@ -34,6 +34,7 @@ const Login = () => {
 
        } else {
         alert('No se a guardado la verificacion se inicio de sesion')
+        return;
        }
 
        setAccount(null)

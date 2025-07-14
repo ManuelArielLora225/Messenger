@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useIdContext } from "../../providers/usersIdProviders";
 import { useFetchApi } from '../../api/apiFetch';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
@@ -18,8 +17,6 @@ const Profile = () => {
     const { request  } = useFetchApi("", token)
     const [statusFriends, setStatusFriends] = useState(null)
     const [requester, setRequester] = useState(null)
-
-    console.log(id)
 
 
    //request of friend status
@@ -43,6 +40,7 @@ const Profile = () => {
     }
 
 
+
     //request of userInfo
      useEffect(() => {
 
@@ -50,16 +48,14 @@ const Profile = () => {
   
         axios.get(`https://api-messenger-g42w.onrender.com/api/users/profile/${id}`)
          .then(res => {
-            setData(res.data)
+            setData(res.data[0])
          })
          .catch(err => {
             setError(err.message)
          })
          .finally(() => {
             setLoading(false)
-         })
-
-        
+         })       
 
      },[id])
 
@@ -207,7 +203,7 @@ const Profile = () => {
              
              <div className='contenedor-inicio-perfil'>
                 <h1>{`${data.name} ${data.lastname}`}</h1>
-                <h3>{data.mail}</h3>
+                <a href={`mailto:${data.mail}`}><h3>{data.mail}</h3></a>
                 <p>{data.gender}</p>
              </div>
 
@@ -217,7 +213,7 @@ const Profile = () => {
                 <p>{`Sitio Web: ${data.web_site}`}</p>
                 <p>{`Pais: ${data.country}`}</p>
                 <p>{data.status}</p>
-                <p>{`Cumpleaños: ${data.date_of_birth}`}</p>
+                <p>{`Cumpleaños: ${data.date_of_birth.split("T")[0]}`}</p>
             </div>
                 
 

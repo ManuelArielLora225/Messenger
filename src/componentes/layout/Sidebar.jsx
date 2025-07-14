@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useFetchApi } from "../../api/apiFetch"
 import { NavLink, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import { useIdContext } from "../../providers/usersIdProviders";
 import '../../styles/Sidebar.css'
 
 
@@ -10,7 +9,6 @@ const Sidebar = () => {
 
      const token = localStorage.getItem("token");
      const { request } = useFetchApi("", token)
-     const { setId } = useIdContext();
      const navegate = useNavigate();
 
 
@@ -32,8 +30,6 @@ const Sidebar = () => {
        setUsersOnline(res)
 
        setShowUsersOnline(prev => !prev)
-
-       console.log(res)
 
     }
 
@@ -77,7 +73,7 @@ const Sidebar = () => {
                             <div key={user.id} className="contenedor-user-online" onClick={() => {navegate(`/Layout/Profile/${user.id}`)}}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
-                            <p className="country">{usersOnline.country}</p>
+                            <p className="country">{user.country}</p>
                             </div>
                         ))}
                     </div>
@@ -92,7 +88,7 @@ const Sidebar = () => {
                             <div key={user.id} className="contenedor-user-online" onClick={() => {navegate(`/Layout/Profile/${user.id}`)}}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
-                            <p className="country">{usersOnline.country}</p>
+                            <p className="country">{user.country}</p>
                             </div>
                         ))}
                     </div>
@@ -107,7 +103,7 @@ const Sidebar = () => {
                             <div key={user.id} className="contenedor-user-online" onClick={() => {navegate(`/Layout/Profile/${user.id}`)}}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>
-                            <p className="country">{usersOnline.country}</p>
+                            <p className="country">{user.country}</p>
                             </div>
                         ))}
                     </div>

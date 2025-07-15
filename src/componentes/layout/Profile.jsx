@@ -25,7 +25,7 @@ const Profile = () => {
         try{
    
            const res = await request({
-            url:`https://api-messenger-g42w.onrender.com/api/friends/statusFriend/${id}`
+            url:`http://localhost:4000/api/friends/statusFriend/${id}`
            })
 
            if(res && res.status){
@@ -46,7 +46,7 @@ const Profile = () => {
 
          statusFriend()
   
-        axios.get(`https://api-messenger-g42w.onrender.com/api/users/profile/${id}`)
+        axios.get(`http://localhost:4000/api/users/profile/${id}`)
          .then(res => {
             setData(res.data[0])
          })
@@ -69,7 +69,7 @@ const Profile = () => {
         try {
 
            const res = await request({
-            url: 'https://api-messenger-g42w.onrender.com/api/friends/addFriend', 
+            url: 'http://localhost:4000/api/friends/addFriend', 
             method: "POST",
             body: {
                 friend_id: id
@@ -96,7 +96,7 @@ const Profile = () => {
         try {
 
             const res = await request({
-                url:`https://api-messenger-g42w.onrender.com/api/friends/requestFriend/${id}`,
+                url:`http://localhost:4000/api/friends/requestFriend/${id}`,
                 method: "POST",
                 body: {
                     field: "status",
@@ -122,7 +122,7 @@ const Profile = () => {
         try {
 
             const res = await request({
-                url:`https://api-messenger-g42w.onrender.com/api/friends/requestFriend/${id}`,
+                url:`http://localhost:4000/api/friends/requestFriend/${id}`,
                 method: "POST",
                 body: {
                     field: "status",
@@ -148,7 +148,7 @@ const Profile = () => {
         try {
             
             const res = await request({
-                url: `https://api-messenger-g42w.onrender.com/api/friends/deleteFriend/${id}`,
+                url: `http://localhost:4000/api/friends/deleteFriend/${id}`,
                 method: "DELETE"
             })
 

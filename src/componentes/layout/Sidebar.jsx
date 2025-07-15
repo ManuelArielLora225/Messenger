@@ -25,7 +25,7 @@ const Sidebar = () => {
     const usersOnlineList = async (e) => {
         e.preventDefault();
         
-      const res = await request({url: "https://api-messenger-g42w.onrender.com/api/users/usersOnline"})
+      const res = await request({url: "http://localhost:4000/api/users/usersOnline "})
 
        setUsersOnline(res)
 
@@ -36,7 +36,7 @@ const Sidebar = () => {
     const friendsOnlineList = async (e) => {
         e.preventDefault();
 
-        const res =  await request({url: "https://api-messenger-g42w.onrender.com/api/friends/friendsAccepted" })
+        const res =  await request({url: "http://localhost:4000/api/friends/friendsAccepted" })
 
         setFriends(res)
 
@@ -46,7 +46,7 @@ const Sidebar = () => {
     const pendingFriendsList = async (e) => {
         e.preventDefault();
 
-        const res =  await request({url: "https://api-messenger-g42w.onrender.com/api/friends/friendsPending" })
+        const res =  await request({url: "http://localhost:4000/api/friends/friendsPending" })
 
         setPending(res)
 

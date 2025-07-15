@@ -9,7 +9,7 @@ const Register = () => {
 
     const token = null
     const [response, setResponse] = useState({})
-    const { data, error, loading, request } = useFetchApi('https://api-messenger-g42w.onrender.com/api/users/register', token)
+    const { data, error, loading, request } = useFetchApi('http://localhost:4000/api/users/register', token)
     const navegate = useNavigate()
 
     const createResponse = (e) => {

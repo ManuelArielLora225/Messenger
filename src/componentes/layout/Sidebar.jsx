@@ -13,13 +13,16 @@ const Sidebar = () => {
 
 
     const [usersOnline, setUsersOnline] = useState([])
+    const [usersOffline, setUsersOffline] = useState([])
     const [friends, setFriends] = useState([])
-    const [Pending, setPending] = useState([])
+    const [pending, setPending] = useState([])
 
     const [showUsersOnline, setShowUsersOnline] = useState(false)
+    const [showUsersOffline, setShowUsersOffline] = useState(false)
     const [showFriends, setShowFriends] = useState(false)
     const [ShowPending, setShowPending] = useState(false)
 
+    
 
 
     const usersOnlineList = async (e) => {
@@ -30,6 +33,18 @@ const Sidebar = () => {
        setUsersOnline(res)
 
        setShowUsersOnline(prev => !prev)
+
+    }
+
+    
+    const usersOfflineList = async (e) => {
+        e.preventDefault();
+        
+      const res = await request({url: "http://localhost:4000/api/users/usersOffline "})
+
+       setUsersOffline(res)
+
+       setShowUsersOffline(prev => !prev)
 
     }
 
@@ -57,10 +72,10 @@ const Sidebar = () => {
         
         <div className="contenedor-sidebar">
 
-            <div className="contenedor-icon-profile">
-                <NavLink to="UserProfile" className='icono-perfil'><CgProfile/></NavLink>
+            <NavLink to = "UserProfile"><div className="contenedor-icon-profile">
+                <div className='icono-perfil'><CgProfile/></div>
                 <p className="titulo-perfil">Perfil</p>
-            </div>
+            </div></NavLink>
 
             <div className="contenedor-opciones">
 
@@ -99,7 +114,22 @@ const Sidebar = () => {
 
                 {ShowPending &&
                      <div className="contenedor-users">
-                        {Pending.map(user => (
+                        {pending.map(user => (
+                            <div key={user.id} className="contenedor-user-online" onClick={() => {navegate(`/Layout/Profile/${user.id}`)}}>
+                            <p className="name">{user.name + ' ' + user.lastname}</p>
+                            <p className="status">{user.status}</p>
+                            <p className="country">{user.country}</p>
+                            </div>
+                        ))}
+                    </div>
+                }
+
+                <h3 className="cabecera-usuarios-online"
+                onClick={usersOfflineList}>Usuarios Offline</h3>
+
+                {showUsersOffline &&
+                    <div className="contenedor-users">
+                        {usersOffline.map(user => (
                             <div key={user.id} className="contenedor-user-online" onClick={() => {navegate(`/Layout/Profile/${user.id}`)}}>
                             <p className="name">{user.name + ' ' + user.lastname}</p>
                             <p className="status">{user.status}</p>

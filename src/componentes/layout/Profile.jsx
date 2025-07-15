@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFetchApi } from '../../api/apiFetch';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
@@ -8,7 +8,7 @@ const Profile = () => {
 
     const { id } = useParams();
     const token = localStorage.getItem("token")
-    const userId = localStorage.getItem("userId")
+    const userId = localStorage.getItem("userId")    
 
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
@@ -43,6 +43,10 @@ const Profile = () => {
 
     //request of userInfo
      useEffect(() => {
+        setData(null)
+        setError(null)
+        setRequester(null)
+        setStatusFriends(null)
 
          statusFriend()
   
@@ -58,6 +62,7 @@ const Profile = () => {
          })       
 
      },[id])
+
 
 
 
@@ -87,6 +92,7 @@ const Profile = () => {
             console.error(`Error al enviar la solicitud: ${err}`)
             alert("No se pudo enviar la solicitud")
         }
+
         
      }
      
@@ -96,16 +102,12 @@ const Profile = () => {
         try {
 
             const res = await request({
-                url:`http://localhost:4000/api/friends/requestFriend/${id}`,
-                method: "POST",
-                body: {
-                    field: "status",
-                    value: "Accepted"
-                }
+                url:`http://localhost:4000/api/friends/acceptFriend/${id}`,
+                method: "POST"
             })
 
             if(res && res.message){
-                alert(res.message)
+                alert('Solicitud de amistar aceptada')
                 await statusFriend()
             }
 
@@ -113,41 +115,43 @@ const Profile = () => {
             console.error('Error al aceptar amigo', err)
             alert('No se pudo aceptar la solicitud')
         }
+
+        console.log(statusFriends)
 
      }
 
         const rejectedFriend = async (e) => {
         e.preventDefault();
 
+
         try {
 
             const res = await request({
-                url:`http://localhost:4000/api/friends/requestFriend/${id}`,
-                method: "POST",
-                body: {
-                    field: "status",
-                    value: "rejected"
-                }
+                url:`http://localhost:4000/api/friends/rejectFriend/${id}`,
+                method: "POST"
             })
             
             if(res && res.message){
-                alert(res.message)
+                alert('Solicitud de amistad rechazada')
                 await statusFriend()
             }
         } catch(err){
             console.error('Error al aceptar amigo', err)
             alert('No se pudo aceptar la solicitud')
         }
-
      }
 
 
     const deleteFriend = async (e) => {
         e.preventDefault();
 
+        const confirmado = window.confirm('Seguro quieres eliminar este amigo?')
+
+        if(confirmado) {
+            
         try {
             
-            const res = await request({
+        const res = await request({
                 url: `http://localhost:4000/api/friends/deleteFriend/${id}`,
                 method: "DELETE"
             })
@@ -159,9 +163,18 @@ const Profile = () => {
         } catch(err){
             console.error('Error al eliminar amigo', err)
             alert('No se pudo eliminar al amigo')
-        } }
+        } 
+
+        } else {
+            
+            return
+        }
+
+    }
 
          const friendButtom = () => {
+
+            if(statusFriend === null) return null;
 
             if(!statusFriends) return <button className='agregar_amigo' onClick={addFriend}>Añadir amigo</button>
 

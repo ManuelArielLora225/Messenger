@@ -1,0 +1,316 @@
+/* UserProfile.css - Estilo tipo Messenger */
+
+/* Variables CSS para colores consistentes */
+:root {
+  --bg-general: #F0F2F5;
+  --bg-contenedor: #FFFFFF;
+  --azul-principal: #0084FF;
+  --azul-claro: #D0E6FF;
+  --azul-hover: #006FE0;
+  --texto-principal: #1C1E21;
+  --texto-secundario: #65676B;
+  --borde-gris: #CED0D4;
+  --verde-activo: #42B72A;
+  --verde-hover: #369A1F;
+  --rojo-error: #FA3E3E;
+  --rojo-hover: #E53935;
+  --amarillo-pendiente: #FFA500;
+  --naranja-cerrar: #FF6B35;
+  --naranja-hover: #E55A2B;
+}
+
+/* Contenedor general del perfil */
+.contenedor-general-userProfile {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: var(--bg-general);
+  padding: 24px;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Estados de carga y error */
+.contenedor-cargando-userProfile,
+.contenedor-error-userProfile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-contenedor);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.contenedor-cargando-userProfile h2 {
+  color: var(--azul-principal);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contenedor-error-userProfile h2 {
+  color: var(--rojo-error);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Contenedor principal del perfil */
+.contenedor-de-userProfile {
+  background-color: var(--bg-contenedor);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+
+/* Círculo de imagen de perfil */
+.contenedor-inicio-userProfile::before {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 120px;
+  background-color: #E4E6EA;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  border: 3px solid var(--borde-gris);
+}
+
+/* Sección de información básica */
+.contenedor-inicio-userProfile {
+  text-align: center;
+  padding: 0 0 20px 0;
+}
+
+.contenedor-inicio-userProfile h1 {
+  color: var(--texto-principal);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.contenedor-inicio-userProfile h3 {
+  color: var(--azul-principal);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.contenedor-inicio-userProfile p {
+  color: var(--texto-secundario);
+  font-size: 16px;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+/* Sección de detalles del perfil */
+.contenedor-detalles-userProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 0;
+}
+
+.contenedor-detalles-userProfile p {
+  color: var(--texto-principal);
+  font-size: 14px;
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #EBEDF0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contenedor-detalles-userProfile p:last-child {
+  border-bottom: none;
+}
+
+/* Indicador de estado offline */
+.contenedor-detalles-userProfile p:last-child::before {
+  content: '●';
+  color: var(--rojo-error);
+  font-size: 12px;
+}
+
+/* Contenedor de botones */
+.contenedor-botones-userProfile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 20px 0 0 0;
+}
+
+/* Estilos base para botones */
+.contenedor-botones-userProfile button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Botón Edit */
+.boton-edit {
+  background-color: var(--verde-activo);
+  color: white;
+}
+
+.boton-edit:hover {
+  background-color: var(--verde-hover);
+  transform: translateY(-1px);
+}
+
+/* Botón Cambiar Contraseña */
+.boton-changePasswordt {
+  background-color: var(--azul-principal);
+  color: white;
+}
+
+.boton-changePasswordt:hover {
+  background-color: var(--azul-hover);
+  transform: translateY(-1px);
+}
+
+/* Botón Cerrar Sesión */
+.boton-cerrarSesion {
+  background-color: var(--naranja-cerrar);
+  color: white;
+}
+
+.boton-cerrarSesion:hover {
+  background-color: var(--naranja-hover);
+  transform: translateY(-1px);
+}
+
+/* Botón Eliminar Cuenta */
+.boton-eliminarCuenta {
+  background-color: var(--rojo-error);
+  color: white;
+}
+
+.boton-eliminarCuenta:hover {
+  background-color: var(--rojo-hover);
+  transform: translateY(-1px);
+}
+
+/* Animaciones y efectos */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contenedor-de-userProfile {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Efectos de loading */
+.contenedor-cargando-userProfile::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--azul-claro);
+  border-top: 2px solid var(--azul-principal);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 12px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .contenedor-general-userProfile {
+    padding: 16px;
+  }
+  
+  .contenedor-de-userProfile {
+    padding: 24px;
+    gap: 20px;
+    max-width: 90%;
+  }
+  
+  .contenedor-botones-userProfile {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .contenedor-inicio-userProfile h1 {
+    font-size: 24px;
+  }
+  
+  .contenedor-inicio-userProfile h3 {
+    font-size: 14px;
+  }
+  
+  .contenedor-detalles-userProfile p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor-general-userProfile {
+    padding: 12px;
+  }
+  
+  .contenedor-de-userProfile {
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .contenedor-botones-userProfile button {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .contenedor-inicio-userProfile::before {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .contenedor-inicio-userProfile h1 {
+    font-size: 22px;
+  }
+}
+
+/* Mejoras para accesibilidad */
+.contenedor-botones-userProfile button:focus {
+  outline: 2px solid var(--azul-principal);
+  outline-offset: 2px;
+}
+
+.contenedor-botones-userProfile button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Hover para detalles */
+.contenedor-detalles-userProfile:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}

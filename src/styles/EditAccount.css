@@ -1,0 +1,258 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+/* Reset y configuración base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #F0F2F5;
+  color: #1C1E21;
+  line-height: 1.5;
+}
+
+/* Contenedor principal */
+.contenedor-general {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #F0F2F5;
+}
+
+/* Contenedor del título */
+.contenedor-titulo {
+  background-color: #FFFFFF;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px 20px 40px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 0;
+}
+
+.contenedor-titulo h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1C1E21;
+  text-align: center;
+  margin: 0;
+}
+
+/* Contenedor del formulario */
+.contenedor-formulario {
+  background-color: #FFFFFF;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px 40px 40px 40px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 0;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #65676B;
+  font-weight: 500;
+}
+
+.label_Desplegable {
+  font-size: 14px;
+  color: #65676B;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+.select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #CED0D4;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #FFFFFF;
+  color: #1C1E21;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+.select:focus {
+  border-color: #0084FF;
+  box-shadow: 0 0 0 2px rgba(0, 132, 255, 0.2);
+}
+
+/* Placeholders */
+input::placeholder {
+  color: #65676B;
+  font-size: 14px;
+}
+
+/* Select personalizado */
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2365676B' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.select option {
+  padding: 8px;
+  background-color: #FFFFFF;
+  color: #1C1E21;
+}
+
+/* Botón de actualizar */
+input[type="submit"] {
+  background-color: #0084FF;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+}
+
+input[type="submit"]:hover {
+  background-color: #006FE0;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 132, 255, 0.3);
+}
+
+input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* Estados de carga, error y éxito */
+.contenedor-cargado,
+.contenedor-loading,
+.contenedor-error,
+.contenedor-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.contenedor-cargado h1,
+.contenedor-cargado h1,
+.contenedor-loading h1 {
+  color: #65676B;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.contenedor-error {
+  background-color: #FFEBEE;
+  border: 1px solid #FA3E3E;
+}
+
+.contenedor-error h1 {
+  color: #FA3E3E;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.contenedor-data {
+  background-color: #E8F5E8;
+  border: 1px solid #42B72A;
+}
+
+.contenedor-data h1 {
+  color: #42B72A;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Separador visual */
+.separador {
+  height: 1px;
+  background-color: #CED0D4;
+  margin: 24px 0;
+}
+
+/* Animación de carga */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.contenedor-loading h1 {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .contenedor-titulo,
+  .contenedor-formulario {
+    padding: 24px;
+    margin: 10px;
+    max-width: 100%;
+  }
+  
+  .contenedor-titulo h1 {
+    font-size: 24px;
+  }
+  
+  .contenedor-general {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor-general {
+    padding: 10px;
+  }
+  
+  .contenedor-titulo,
+  .contenedor-formulario {
+    padding: 20px;
+    margin: 5px;
+  }
+  
+  .contenedor-titulo h1 {
+    font-size: 22px;
+  }
+}

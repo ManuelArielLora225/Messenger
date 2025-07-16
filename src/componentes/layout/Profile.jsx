@@ -212,7 +212,7 @@ const Profile = () => {
 
             {data && 
               
-              <div className='contenedor-de-perfil'>
+            <div className='contenedor-de-perfil'>
              
              <div className='contenedor-inicio-perfil'>
                 <h1>{`${data.name} ${data.lastname}`}</h1>

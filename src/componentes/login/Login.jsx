@@ -33,7 +33,6 @@ const Login = () => {
          localStorage.setItem("userId", decoded.id)
 
        } else {
-        alert('No se a guardado la verificacion se inicio de sesion')
         return;
        }
 

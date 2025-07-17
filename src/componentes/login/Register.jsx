@@ -8,9 +8,28 @@ import '../../styles/Register.css'
 const Register = () => {
 
     const token = null
-    const [response, setResponse] = useState({})
+    const [response, setResponse] = useState
+    ({
+     name: "",
+     lastname: "",
+     mail: "",
+     password: "",
+     bio: "",
+    date_of_birth: "",
+    gender: "",
+     phone_number: "",
+     web_site: ""
+    })
+    const [confirmPasswords, setConfirmPasswords] = useState({})
     const { data, error, loading, request } = useFetchApi('http://localhost:4000/api/users/register', token)
-    const navegate = useNavigate()
+    const navigate = useNavigate()
+
+    const createConfirmPassword = (e) => {
+        setConfirmPasswords({
+            ...confirmPasswords,
+            [e.target.name]: e.target.value
+        })
+    }
 
     const createResponse = (e) => {
         setResponse({
@@ -18,14 +37,23 @@ const Register = () => {
             [e.target.name]: e.target.value
         })
 
-
     }
 
     const createAccount = async (e) => {
         e.preventDefault();
 
-        if(response.password !== response.confirm_password) {
+        if(confirmPasswords.password !== confirmPasswords.confirm_password) {
             alert('Las contraseñas no coinciden')
+            return;
+        }
+
+        if (!/^\d+$/.test(response.phone_number)) {
+       alert("El número de teléfono solo debe contener números.");
+        return;
+        }
+
+        if(Object.values(response).some(value => value === "")){
+            alert('Todos los campos deben ser llenados')
             return;
         }
 
@@ -34,14 +62,16 @@ const Register = () => {
             body: response
         })
 
-        if(data){
-            navegate('/Login')
+        console.log(response)
+        if(respond){
+            navigate('/Login')
+        } else {
+            alert('Error al registrar')
         }
         
 
     }
     
-
     return (
 
         <div className='contenedor-register'>
@@ -73,23 +103,28 @@ const Register = () => {
                     onChange={createResponse}/>
                 </label>
 
+                <label htmlFor='bio'>
+                    <input type='text' id='bio' name='bio' placeholder='A que te dedicas?'
+                    onChange={createResponse}/>
+                </label>
+
                 <label htmlFor='Contraseña'>
                     <input type='password' id='Contraseña' name='password' placeholder='Contraseña'
-                    onChange={createResponse}/>
+                    onChange={(e) => {createResponse(e); createConfirmPassword(e)}}/>
                 </label>
 
                 <label htmlFor='Repite_la_contraseña'>
                     <input type='password' id='Repite_la_contraseña' name='confirm_password' placeholder='Repite la contraseña'
-                    onChange={createResponse}/>
+                    onChange={createConfirmPassword}/>
                 </label>
 
-                <label htmlFor='Fecha_de_nacimiento'>
+                <label htmlFor='Fecha_de_nacimiento'>Inserta tu fecha de nacimiento</label>
                     <input type='date' id='Fecha_de_nacimiento' name='date_of_birth' placeholder='Fecha_de_nacimiento'
                     onChange={createResponse}/>
-                </label>
 
                 <label htmlFor='Genero' className='label_Desplegable'>Selecciona tu Genero</label>
                 <select id='Genero' name='gender' className='select' onChange={createResponse}>
+                    <option value="">Selecciona el Genero</option>
                     <option value="male">Hombre</option>
                     <option value='female'>Mujer</option>
                     <option value='other'>Otro</option>

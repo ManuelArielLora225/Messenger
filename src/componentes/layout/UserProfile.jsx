@@ -7,7 +7,7 @@ import '../../styles/UserProfile.css'
 const UserProfile = () => {
   
    const token = localStorage.getItem("token");
-   const navegate = useNavigate();
+   const navigate = useNavigate();
 
   const { data, error, loading, request } = useFetchApi("",token)
 
@@ -25,29 +25,36 @@ const UserProfile = () => {
 
    const editAccount = (e) => {
     e.preventDefault();
-    navegate('/Layout/EditAccount')
+    navigate('/Layout/EditAccount')
     }
 
     const changePassword = (e) => {
     e.preventDefault();
-    navegate('/Layout/changePassword')
+    navigate('/Layout/changePassword')
     }
 
 
    const logOut = async (e) => {
     e.preventDefault();
 
-    const res = await request ({
-        url: "http://localhost:4000/api/users/logout",
-        method: "POST"
+    try {
+   const res = await fetch("http://localhost:4000/api/users/logout", {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
  
-    if(res){
+    if(res.ok){
         localStorage.removeItem("token")
         localStorage.removeItem("userId")
-        navegate('/Login')
+       setTimeout(() => {
+         navigate('/Login')
+       },0.7) 
     } else {
         alert('Error al cerran sesion')
+    }} catch (err) {
+        alert(`Error al cerran sesion ${err}`)
     }
    }
 
@@ -57,17 +64,29 @@ const UserProfile = () => {
     const confirm = window.confirm('Seguro quieres eliminar tu cuenta?')
 
     if(confirm){
-      
-    const res = await request ({
-        url: "http://localhost:4000/api/users/delete",
-        method: "DELETE"
+    
+  try{
+    const res = await fetch("http://localhost:4000/api/users/delete", {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 
     if(res){
       setDeleteAcount(res.message)
+      setTimeout(() => {
+        navigate('/Login')
+      },0.7)
     } else {
         alert('Error al eliminar la cuenta')
     }
+
+  } catch(err){
+    alert( `Error al eliminar la cuenta ${err}`)
+  }
+      
+
 
     }
 

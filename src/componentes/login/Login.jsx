@@ -33,7 +33,7 @@ const Login = () => {
          localStorage.setItem("userId", decoded.id)
 
        } else {
-        return;
+        throw new Error("Error al verificar la sesion");
        }
 
        setAccount(null)

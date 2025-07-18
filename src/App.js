@@ -23,7 +23,7 @@ function App() {
      <Route path="/Layout" element={<Layout />}>
        <Route path="Profile/:id" element={<Profile />} />
       <Route path="UserProfile" element={<UserProfile />} />
-      <Route path="Chat" element={<Chat />} />
+      <Route path="Chat/:reciever_id" element={<Chat />} />
       <Route path="EditAccount" element={<EditAccount />} />
       <Route path="ChangePassword" element={<ChangePassword/>} />
      </Route>

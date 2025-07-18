@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFetchApi } from '../../api/apiFetch';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import '../../styles/Profile.css'
 
@@ -9,6 +10,7 @@ const Profile = () => {
     const { id } = useParams();
     const token = localStorage.getItem("token")
     const userId = localStorage.getItem("userId")    
+    const navigate = useNavigate();
 
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
@@ -237,7 +239,7 @@ const Profile = () => {
                 </div>
 
 
-                <button className='boton-chat'>
+                <button className='boton-chat' onClick={() => { navigate(`/Layout/Chat/${data.id}`)}}>
                     💬 Chat
                 </button>
 

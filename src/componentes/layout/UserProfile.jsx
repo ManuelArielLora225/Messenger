@@ -11,8 +11,6 @@ const UserProfile = () => {
 
   const { data, error, loading, request } = useFetchApi("",token)
 
-  console.log(data)
-
   const [deleteAcount, setDeleteAcount] = useState(null)
 
 
